@@ -5,30 +5,45 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
 
-    public static AudioClip s1, s2;
+    public static AudioClip WalkingGrass, WalkingSand, CollideTree, Sang;
     static AudioSource audioSrc;
 
     // Use this for initialization
     void Start()
     {
-        s1 = Resources.Load<AudioClip>("Sound1");
-        s2 = Resources.Load<AudioClip>("Sound2");
+        WalkingGrass = Resources.Load<AudioClip>("GrassWalk");
+        WalkingSand = Resources.Load<AudioClip>("SandWalk");
+        CollideTree = Resources.Load<AudioClip>("TreeSound");
+        Sang = Resources.Load<AudioClip>("Bakgrunnsang");
 
         audioSrc = GetComponent<AudioSource>();
 
-        DontDestroyOnLoad(gameObject);
+        //PlaySound("Bakgrunnsang");
+
+        //DontDestroyOnLoad(gameObject);
     }
 
     public static void PlaySound(string clip)
     {
         switch (clip)
         {
-            case "Sound1":
-                audioSrc.PlayOneShot(s1);
+            case "GrassWalk":
+                audioSrc.PlayOneShot(WalkingGrass);
+                //audioSrc.pitch = (Random.Range(.9f, 1.2f));
                 break;
 
-            case "Sound2":
-                audioSrc.PlayOneShot(s2);
+            case "SandWalk":
+                audioSrc.PlayOneShot(WalkingSand);
+                //audioSrc.pitch = (Random.Range(.9f, 1.2f));
+                break;
+
+            case "TreeSound":
+                audioSrc.PlayOneShot(CollideTree);
+                //audioSrc.pitch = (Random.Range(.9f, 1.2f));
+                break;
+
+            case "Bakgrunnsang":
+                audioSrc.PlayOneShot(Sang);
                 break;
         }
     }
